@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom' 
 
 import './App.css';
 
@@ -8,28 +9,36 @@ import Packages from './components/Packages'
 
 function App() {
 
-  const packages = ['Activate your Crystals', 'Monkey Meditation', 'Soak in the Hotsprings', 'Hypnotherapy', 'Mineral Bath']
+  const packages = ['Activate your Crystals', 'Monkey Meditation', 'Soak in the Hotsprings', 'Hypnotherapy', 'Mineral Bath', 'Vortex Tour']
 
   return (
     <div className="App">
-      <header>
-        <h1 className="title">Welcome to Monty's Mineral SPA</h1>
+      <Router>
+        <header>
+          <h1 className="title">Welcome to Monty's Mineral SPA</h1>
 
-        <div className="navBar">
-          <ul>
-            <li>
-              <a href={<Home />}>Home</a>
-            </li>
-            <li>
-              <a href={<About />}>About Us</a>
-            </li>
-            <li>
-              <a href={<Packages packages={packages}/>}>Our Packages</a>
-            </li>
-          </ul>
-        </div>
-
-      </header>
+          <div className="navBar">
+            <ul>
+              <li>
+               <Link to='/'>Home</Link>
+              </li>
+              <li>
+                <Link to='/about'>About</Link>
+              </li>
+              <li>
+                <Link to='/packages'>Packages</Link>
+              </li>
+            </ul>
+          </div>
+          <main>
+            <Routes>
+              <Route path='/' element={<Home/>} />
+              <Route path='/about' element={<About></About>} />
+              <Route path='/packages' element={<Packages packages={packages}/>}/>
+            </Routes>
+          </main>
+        </header>
+      </Router>
     </div>
   );
 }
